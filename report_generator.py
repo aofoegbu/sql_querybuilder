@@ -478,7 +478,10 @@ class ReportGenerator:
         for key, label, format_spec in metrics:
             if key in stats:
                 if format_spec:
-                    value = f"{stats[key]:{format_spec}}"
+                    try:
+                        value = f"{stats[key]:{format_spec}}"
+                    except (ValueError, TypeError):
+                        value = str(stats[key])
                 else:
                     value = str(stats[key])
                 
