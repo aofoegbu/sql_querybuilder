@@ -53,6 +53,24 @@ export function QueryBuilderModal({ isOpen, onClose, onApply }: QueryBuilderModa
     setSelectedColumns(prev => prev.filter(col => col.id !== columnId));
   };
 
+  const addColumn = (tableName: string, columnName: string, columnType: string) => {
+    const newColumn: SelectedColumn = {
+      id: `${Date.now()}-${Math.random()}`,
+      table: tableName,
+      column: columnName,
+      type: 'column'
+    };
+    
+    // If it's a numeric column, suggest an aggregation
+    if (columnType.includes('numeric') || columnType.includes('integer')) {
+      newColumn.type = 'function';
+      newColumn.functionType = 'SUM';
+      newColumn.alias = `total_${columnName}`;
+    }
+    
+    setSelectedColumns(prev => [...prev, newColumn]);
+  };
+
   const generateSQL = () => {
     if (selectedColumns.length === 0) return '';
 
@@ -220,15 +238,32 @@ export function QueryBuilderModal({ isOpen, onClose, onApply }: QueryBuilderModa
                 ))}
               </div>
 
-              <div className="mt-4">
-                <Button
-                  variant="outline"
-                  className="w-full border-2 border-dashed border-slate-300 dark:border-slate-600 hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Column
-                </Button>
-              </div>
+              {/* Available Columns from Selected Tables */}
+              {Array.from(selectedTables).length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium mb-2">Available Columns</h4>
+                  <div className="space-y-2 max-h-40 overflow-y-auto">
+                    {schemas?.filter(schema => selectedTables.has(schema.name)).map(schema => 
+                      schema.columns.map(column => (
+                        <Button
+                          key={`${schema.name}-${column.name}`}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => addColumn(schema.name, column.name, column.type)}
+                          className="w-full justify-start text-xs"
+                          disabled={selectedColumns.some(col => col.table === schema.name && col.column === column.name)}
+                        >
+                          <Plus className="w-3 h-3 mr-1" />
+                          {schema.name}.{column.name}
+                          <Badge variant="secondary" className="ml-auto text-xs">
+                            {column.type}
+                          </Badge>
+                        </Button>
+                      ))
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
