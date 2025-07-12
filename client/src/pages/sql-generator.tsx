@@ -21,16 +21,25 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import type { QueryResult } from "@shared/schema";
 
-const DEFAULT_QUERY = `SELECT
-    meter_id,
-    location_zone,
-    SUM(usage_gallons) AS total_usage,
-    AVG(usage_gallons) AS avg_usage,
-    COUNT(*) AS reading_count
-FROM water_meter_readings
-WHERE reading_date >= '2024-01-01'
-GROUP BY meter_id, location_zone
-ORDER BY total_usage DESC`;
+const DEFAULT_QUERY = `-- 🎯 Comprehensive Water Usage Analytics Dashboard
+-- Perfect for testing Table, Charts, and Dashboard features
+SELECT 
+  wmr.location_zone as Zone,
+  cp.account_type as Account_Type,
+  COUNT(DISTINCT wmr.customer_id) as Total_Customers,
+  COUNT(*) as Total_Readings,
+  ROUND(SUM(wmr.usage_gallons), 2) as Total_Usage_Gallons,
+  ROUND(AVG(wmr.usage_gallons), 2) as Avg_Usage_Per_Reading,
+  ROUND(MIN(wmr.usage_gallons), 2) as Min_Usage,
+  ROUND(MAX(wmr.usage_gallons), 2) as Max_Usage,
+  SUM(cb.total_amount) as Total_Revenue,
+  COUNT(CASE WHEN cb.payment_status = 'paid' THEN 1 END) as Paid_Bills,
+  COUNT(CASE WHEN cb.payment_status = 'pending' THEN 1 END) as Pending_Bills
+FROM water_meter_readings wmr
+JOIN customer_profiles cp ON wmr.customer_id = cp.customer_id
+JOIN customer_billing cb ON wmr.customer_id = cb.customer_id
+GROUP BY wmr.location_zone, cp.account_type
+ORDER BY Total_Usage_Gallons DESC, Zone`;
 
 export default function SqlGenerator() {
   const [sqlQuery, setSqlQuery] = useState(DEFAULT_QUERY);
