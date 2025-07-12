@@ -1,8 +1,8 @@
-# SQL Query Generator Application
+# SQL Report Generator Application
 
 ## Overview
 
-This is a full-stack SQL query generator application built with React (frontend) and Express (backend). The application provides an interactive interface for writing, executing, and managing SQL queries with features like schema browsing, query building, and results visualization. It's designed for water utility data management with sample tables for water meter readings, customer profiles, billing, and service locations.
+This is a comprehensive SQL Report Generator built with Python and Streamlit, providing a professional visual GUI for SQL query building, execution, and reporting. The application features an intuitive interface for writing SQL queries, executing them against PostgreSQL databases, and generating professional reports with data visualization. It's designed for water utility data management with comprehensive mock datasets including water meter readings, customer profiles, billing, and service locations.
 
 ## User Preferences
 
@@ -10,23 +10,21 @@ Preferred communication style: Simple, everyday language.
 
 ## System Architecture
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **Build Tool**: Vite for fast development and building
-- **UI Library**: Radix UI components with Tailwind CSS for styling
-- **State Management**: TanStack React Query for server state management
-- **Routing**: Wouter for lightweight client-side routing
-- **Code Editor**: Monaco Editor for SQL syntax highlighting and editing
-- **Theme System**: Custom theme provider supporting light/dark modes
+### Application Architecture
+- **Framework**: Python with Streamlit for rapid GUI development
+- **UI Components**: Professional Streamlit interface with custom CSS styling
+- **Database**: PostgreSQL with SQLAlchemy for robust data operations
+- **Data Processing**: Pandas for efficient data manipulation and analysis
+- **Visualization**: Plotly for interactive charts and professional visualizations
+- **Report Generation**: Custom HTML report generator with professional templates
+- **Query Building**: Visual drag-and-drop query builder for non-technical users
 
-### Backend Architecture
-- **Framework**: Express.js with TypeScript
-- **Runtime**: Node.js with ES modules
-- **Database ORM**: Drizzle ORM for type-safe database operations
-- **Database**: PostgreSQL (configured for Neon serverless)
-- **API Design**: RESTful API with JSON responses
-- **Error Handling**: Centralized error middleware
-- **Development**: Hot reloading with automatic server restart
+### Core Modules
+- **Main Application** (`app.py`): Streamlit GUI with tabs for query building, results, reports, and analytics
+- **Database Manager** (`database.py`): PostgreSQL connection handling, query execution, and mock data generation
+- **Query Builder** (`query_builder.py`): Visual query construction with validation and templates
+- **Chart Builder** (`chart_builder.py`): Interactive chart creation using Plotly with multiple chart types
+- **Report Generator** (`report_generator.py`): Professional HTML report generation with statistics and insights
 
 ## Key Components
 
