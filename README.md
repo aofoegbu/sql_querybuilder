@@ -215,4 +215,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Ogelo SQL Builder** - Built with ❤️ for modern SQL development and water utility management.
+**Ogelo SQL Builder**.
