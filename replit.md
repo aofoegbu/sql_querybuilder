@@ -1,8 +1,8 @@
-# SQL Report Generator Application
+# Ogelo SQL Builder Application
 
 ## Overview
 
-This is a comprehensive SQL Report Generator built with Python and Streamlit, providing a professional visual GUI for SQL query building, execution, and reporting. The application features an intuitive interface for writing SQL queries, executing them against PostgreSQL databases, and generating professional reports with data visualization. It's designed for water utility data management with comprehensive mock datasets including water meter readings, customer profiles, billing, and service locations.
+This is Ogelo SQL Builder, a comprehensive SQL development environment built with React, TypeScript, and PostgreSQL, providing a professional visual GUI for SQL query building, execution, and reporting. The application features an intuitive interface for writing SQL queries with Monaco editor, executing them against PostgreSQL databases, and generating professional reports with data visualization. It's designed for water utility data management with comprehensive datasets including water meter readings, customer profiles, billing, and service locations.
 
 ## User Preferences
 
@@ -11,20 +11,20 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Application Architecture
-- **Framework**: Python with Streamlit for rapid GUI development
-- **UI Components**: Professional Streamlit interface with custom CSS styling
-- **Database**: PostgreSQL with SQLAlchemy for robust data operations
-- **Data Processing**: Pandas for efficient data manipulation and analysis
-- **Visualization**: Plotly for interactive charts and professional visualizations
-- **Report Generation**: Custom HTML report generator with professional templates
-- **Query Building**: Visual drag-and-drop query builder for non-technical users
+- **Framework**: React 18 with TypeScript for modern component-based development
+- **UI Components**: Professional Radix UI components with Tailwind CSS styling
+- **Database**: PostgreSQL with Drizzle ORM for type-safe database operations
+- **Data Processing**: TanStack Query for efficient data fetching and caching
+- **Visualization**: Recharts for interactive charts and professional visualizations
+- **Code Editor**: Monaco Editor with SQL syntax highlighting and IntelliSense
+- **Query Building**: Comprehensive visual query builder supporting all SQL operations
 
-### Core Modules
-- **Main Application** (`app.py`): Streamlit GUI with tabs for query building, results, reports, and analytics
-- **Database Manager** (`database.py`): PostgreSQL connection handling, query execution, and mock data generation
-- **Query Builder** (`query_builder.py`): Visual query construction with validation and templates
-- **Chart Builder** (`chart_builder.py`): Interactive chart creation using Plotly with multiple chart types
-- **Report Generator** (`report_generator.py`): Professional HTML report generation with statistics and insights
+### Core Components
+- **SQL Generator** (`sql-generator.tsx`): Main React interface with Monaco editor, query execution, and results display
+- **Query Builder Modal** (`query-builder-modal.tsx`): Comprehensive visual query builder supporting all SQL operations
+- **Monaco Editor** (`monaco-editor.tsx`): Professional SQL editor with syntax highlighting and IntelliSense
+- **Results Table** (`results-table.tsx`): Interactive table for query results with export functionality
+- **Schema Browser** (`schema-browser.tsx`): Database schema exploration with search and filtering
 
 ## Key Components
 

@@ -263,7 +263,7 @@ export function QueryBuilderModal({ isOpen, onClose, onApply }: QueryBuilderModa
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-6xl max-h-[90vh] overflow-hidden">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Visual Query Builder</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Ogelo Visual Query Builder</DialogTitle>
           
           {/* Query Type Selector */}
           <div className="flex items-center space-x-2 mt-4">

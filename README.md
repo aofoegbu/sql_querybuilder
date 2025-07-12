@@ -1,6 +1,6 @@
-# SQL Report Generator
+# Ogelo SQL Builder
 
-A comprehensive SQL Report Generator built with React, TypeScript, and PostgreSQL, providing a professional visual GUI for SQL query building, execution, and reporting. Designed specifically for water utility data management with robust mock datasets and interactive data visualization.
+A comprehensive SQL Builder built with React, TypeScript, and PostgreSQL, providing a professional visual GUI for SQL query building, execution, and reporting. Designed specifically for water utility data management with robust mock datasets and interactive data visualization.
 
 ## 🌟 Features
 
@@ -158,7 +158,7 @@ The application supports all major SQL operations through both the visual builde
 - **Operational Reporting**: Generate comprehensive reports for management and regulatory compliance
 
 ### SQL Learning and Development
-- **Query Learning**: Visual query builder helps users understand SQL syntax
+- **Query Learning**: Ogelo's visual query builder helps users understand SQL syntax
 - **Testing Environment**: Safe environment for experimenting with SQL queries
 - **Best Practices**: Built-in validation and error prevention
 - **Professional Tools**: Industry-standard editor with advanced features
@@ -211,4 +211,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-Built with ❤️ for modern SQL development and water utility management.
+**Ogelo SQL Builder** - Built with ❤️ for modern SQL development and water utility management.

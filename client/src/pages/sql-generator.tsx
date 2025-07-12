@@ -21,7 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import type { QueryResult } from "@shared/schema";
 
-const DEFAULT_QUERY = `-- 🎯 Comprehensive Water Usage Analytics Dashboard
+const DEFAULT_QUERY = `-- 🎯 Ogelo SQL Builder - Comprehensive Water Usage Analytics Dashboard
 -- Perfect for testing Table, Charts, and Dashboard features
 SELECT 
   wmr.location_zone as Zone,
