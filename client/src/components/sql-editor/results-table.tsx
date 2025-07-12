@@ -18,6 +18,59 @@ export function ResultsTable({ result, isLoading, onExport }: ResultsTableProps)
   const [activeTab, setActiveTab] = useState<'table' | 'charts' | 'dashboard'>('table');
   const rowsPerPage = 20;
 
+  // Process data for charts - moved to top level to avoid conditional hooks
+  const chartData = useMemo(() => {
+    if (!result || result.rows.length === 0) return [];
+    
+    return result.rows.slice(0, 50).map((row, index) => {
+      const dataPoint: any = { index };
+      result.columns.forEach((column, colIndex) => {
+        dataPoint[column] = row[colIndex];
+      });
+      return dataPoint;
+    });
+  }, [result]);
+
+  // Identify numeric columns for charts
+  const numericColumns = useMemo(() => {
+    if (!result || result.rows.length === 0) return [];
+    
+    const numeric: string[] = [];
+    result.columns.forEach((column, colIndex) => {
+      const sampleValue = result.rows[0]?.[colIndex];
+      if (typeof sampleValue === 'number' || (!isNaN(Number(sampleValue)) && sampleValue !== null)) {
+        numeric.push(column);
+      }
+    });
+    return numeric;
+  }, [result]);
+
+  // Calculate basic statistics
+  const statistics = useMemo(() => {
+    if (!result || result.rows.length === 0) return {};
+    
+    const stats: any = {};
+    numericColumns.forEach(column => {
+      const columnIndex = result.columns.indexOf(column);
+      const values = result.rows
+        .map(row => Number(row[columnIndex]))
+        .filter(val => !isNaN(val) && val !== null);
+      
+      if (values.length > 0) {
+        stats[column] = {
+          min: Math.min(...values),
+          max: Math.max(...values),
+          avg: values.reduce((a, b) => a + b, 0) / values.length,
+          total: values.reduce((a, b) => a + b, 0),
+          count: values.length
+        };
+      }
+    });
+    return stats;
+  }, [result, numericColumns]);
+
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D', '#FFC658', '#FF7C7C'];
+
   if (isLoading) {
     return (
       <div className="flex-1 bg-white dark:bg-slate-800 flex flex-col">
@@ -91,59 +144,6 @@ export function ResultsTable({ result, isLoading, onExport }: ResultsTableProps)
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = Math.min(startIndex + rowsPerPage, result.rows.length);
   const currentRows = result.rows.slice(startIndex, endIndex);
-
-  // Process data for charts
-  const chartData = useMemo(() => {
-    if (!result || result.rows.length === 0) return [];
-    
-    return result.rows.slice(0, 50).map((row, index) => {
-      const dataPoint: any = { index };
-      result.columns.forEach((column, colIndex) => {
-        dataPoint[column] = row[colIndex];
-      });
-      return dataPoint;
-    });
-  }, [result]);
-
-  // Identify numeric columns for charts
-  const numericColumns = useMemo(() => {
-    if (!result || result.rows.length === 0) return [];
-    
-    const numeric: string[] = [];
-    result.columns.forEach((column, colIndex) => {
-      const sampleValue = result.rows[0]?.[colIndex];
-      if (typeof sampleValue === 'number' || (!isNaN(Number(sampleValue)) && sampleValue !== null)) {
-        numeric.push(column);
-      }
-    });
-    return numeric;
-  }, [result]);
-
-  // Calculate basic statistics
-  const statistics = useMemo(() => {
-    if (!result || result.rows.length === 0) return {};
-    
-    const stats: any = {};
-    numericColumns.forEach(column => {
-      const columnIndex = result.columns.indexOf(column);
-      const values = result.rows
-        .map(row => Number(row[columnIndex]))
-        .filter(val => !isNaN(val) && val !== null);
-      
-      if (values.length > 0) {
-        stats[column] = {
-          min: Math.min(...values),
-          max: Math.max(...values),
-          avg: values.reduce((a, b) => a + b, 0) / values.length,
-          total: values.reduce((a, b) => a + b, 0),
-          count: values.length
-        };
-      }
-    });
-    return stats;
-  }, [result, numericColumns]);
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D', '#FFC658', '#FF7C7C'];
 
   return (
     <div className="flex-1 bg-white dark:bg-slate-800 flex flex-col">
