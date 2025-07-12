@@ -236,16 +236,16 @@ export default function SqlGenerator() {
               <Plus className="w-4 h-4 mr-1" />
               New Query
             </Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsQueryBuilderOpen(true)}
+            >
+              <Wand2 className="w-4 h-4 mr-1" />
+              Query Builder
+            </Button>
           </div>
         </div>
         <div className="flex items-center space-x-3">
-          <Button
-            onClick={() => setIsQueryBuilderOpen(true)}
-            className="bg-green-100 hover:bg-green-200 dark:bg-green-900 dark:hover:bg-green-800 text-green-700 dark:text-green-300"
-          >
-            <Wand2 className="w-4 h-4 mr-1" />
-            Query Builder
-          </Button>
           <Button
             variant="ghost"
             size="sm"
