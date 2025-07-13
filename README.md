@@ -4,6 +4,7 @@ A comprehensive SQL Builder built with React, TypeScript, and PostgreSQL, provid
 
 https://sql-report-craft-augustineogelo.replit.app/
 
+
 ![SQL Builder](screenshots/sql_builder.png)
 
 ## 🌟 Features
