@@ -7,6 +7,7 @@ https://sql-report-craft-augustineogelo.replit.app/
 
 ![SQL Builder](screenshots/sql_builder.png)
 
+
 ## 🌟 Features
 
 ### Core SQL Operations
