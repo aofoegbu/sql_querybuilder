@@ -3,7 +3,7 @@
 ## Overview
 
 This is Ogelo SQL Builder, a comprehensive SQL development environment built with React, TypeScript, and PostgreSQL, providing a professional visual GUI for SQL query building, execution, and reporting. The application features an intuitive interface for writing SQL queries with Monaco editor, executing them against PostgreSQL databases, and generating professional reports with data visualization. It's designed for water utility data management with comprehensive datasets including water meter readings, customer profiles, billing, and service locations.
-
+ 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
