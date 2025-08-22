@@ -2,7 +2,7 @@
 
 A comprehensive SQL Builder built with React, TypeScript, and PostgreSQL, providing a professional visual GUI for SQL query building, execution, and reporting. Designed specifically for water utility data management with robust mock datasets and interactive data visualization.
 
-https://sql-report-craft-augustineogelo.replit.app/
+https://sqlbuilder.ogelollm.app
 
 
 ![SQL Builder](screenshots/sql_builder.png)
