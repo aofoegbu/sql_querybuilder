@@ -211,7 +211,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🔗 Links
 
-- **Live Demo**: Available on Replit
+- **Live Demo**: Available on https://sqlbuilder.ogelollm.app
 - **Documentation**: Comprehensive inline documentation
 - **Support**: Submit issues through GitHub
 
